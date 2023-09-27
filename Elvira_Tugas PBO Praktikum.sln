@@ -1,25 +1,281 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34018.315
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elvira_Tugas PBO Praktikum", "Elvira_Tugas PBO Praktikum.csproj", "{FEB23C43-0AF8-4C40-873F-B9519CF9E4D7}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FEB23C43-0AF8-4C40-873F-B9519CF9E4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEB23C43-0AF8-4C40-873F-B9519CF9E4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEB23C43-0AF8-4C40-873F-B9519CF9E4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEB23C43-0AF8-4C40-873F-B9519CF9E4D7}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5726B95A-BD3A-454E-9459-A55BA78EEA3F}
-	EndGlobalSection
-EndGlobal
+using System;
+
+namespace Tugas_PBO
+{
+    // BATAS ATAS CLASS Vga
+    // SuperClass Vga
+    class Vga
+    {
+        public string merk;
+
+        public Vga(string _merk)
+        {
+            this.merk = _merk;
+        }
+    }
+
+    // SubClass AMD <- Superclass Vga
+    class AMD : Vga
+    {
+
+        public AMD() : base("AMD")
+        {
+
+        }
+    }
+
+    // SubClass Nvidia <- SuperClass Vga
+    class Nvidia : Vga
+    {
+        public Nvidia() : base("Nvidia")
+        {
+
+        }
+    }
+    // BATAS BAWAH CLASS Vga
+
+    // BATAS ATAS CLASS PROCESSOR
+    // SuperClass Processor
+    class Processor
+    {
+        public string merk;
+        public string tipe;
+
+        public Processor(string _merk, string _tipe)
+        {
+            this.merk = _merk;
+            this.tipe = _tipe;
+        }
+    }
+
+    // SubClass Intel <- SuperClass Processor
+    class Intel : Processor
+    {
+        public Intel(string _tipe) : base("Intel", _tipe)
+        {
+
+        }
+    }
+
+    // SubClass AMD <- SuperClass Processor
+    class Processor_AMD : Processor
+    {
+        public Processor_AMD(string _tipe) : base("AMD", _tipe)
+        {
+
+        }
+    }
+
+    // SubClass CoreI3 <- SuperClass Intel <- SuperClass Processor
+    class CoreI3 : Intel
+    {
+        public CoreI3() : base("Core i3")
+        {
+
+        }
+    }
+
+    // SubClass CoreI5 <- SuperClass Intel <- SuperClass Processor
+    class CoreI5 : Intel
+    {
+        public CoreI5() : base("Core i5")
+        {
+
+        }
+    }
+
+    // SubClass CoreI7 <- SuperClass Intel <- SuperClass Processor
+    class CoreI7 : Intel
+    {
+        public CoreI7() : base("Core i7")
+        {
+
+        }
+    }
+
+    // SubClass Ryzen <- SuperClass Processor_AMD <- SuperClass Processor
+    class Ryzen : Processor_AMD
+    {
+        public Ryzen() : base("RAYZEN")
+        {
+
+        }
+    }
+
+    // SubClass Athlon <- SuperClass Processor_AMD <- SuperClass Processor
+    class Athlon : Processor_AMD
+    {
+        public Athlon() : base("ATHLON")
+        {
+
+        }
+    }
+    // BATAS BAWAH CLASS PROCESSOR
+
+    // BATAS ATAS CLASS LAPTOP
+    // SuperClass Laptop
+    class Laptop
+    {
+        public string merk;
+        public string tipe;
+        public Vga vga;
+        public Processor processor;
+
+        public Laptop(string _merk, string _tipe, Vga _vga, Processor _processor)
+        {
+            this.merk = _merk;
+            this.tipe = _tipe;
+            this.vga = _vga;
+            this.processor = _processor;
+        }
+
+        // Method LaptopDinyalakan() (Instruksi Nomor 2A)
+        public void LaptopDinyalakan()
+        {
+            Console.WriteLine("Laptop " + merk + " " + tipe + " menyala");
+        }
+
+        // Method LaptopDimatikan() (Instruksi Nomor 2B)
+        public void LaptopDimatikan()
+        {
+            Console.WriteLine("Laptop " + merk + " " + tipe + " mati");
+        }
+    }
+
+    // SubClass ASUS <- SuperClass Laptop
+    class ASUS : Laptop
+    {
+        public ASUS(string _tipe, Vga _vga, Processor _processor) : base("ASUS", _tipe, _vga, _processor)
+        {
+
+        }
+    }
+
+    // SubClass ACER <- SuperClass Laptop
+    class ACER : Laptop
+    {
+        public ACER(string _tipe, Vga _vga, Processor _processor) : base("ACER", _tipe, _vga, _processor)
+        {
+
+        }
+    }
+
+    // SubClass Lenovo <- SuperClass Lenovo
+    class Lenovo : Laptop
+    {
+        public Lenovo(string _tipe, Vga _vga, Processor _processor) : base("Lenovo", _tipe, _vga, _processor)
+        {
+
+        }
+    }
+
+    // SubClass ROG <- SuperClass ASUS <- SuperClass Laptop
+    class ROG : ASUS
+    {
+        public ROG(Vga _vga, Processor _processor) : base("ROG", _vga, _processor)
+        {
+
+        }
+    }
+
+    // SubClass Vivobook <- SuperClass ASUS <- SuperClass Laptop
+    class Vivobook : ASUS
+    {
+        public Vivobook(Vga _vga, Processor _processor) : base("Vivobook", _vga, _processor)
+        {
+
+        }
+
+        // Method Ngoding() (Instruksi Nomor 2D)
+        public void Ngoding()
+        {
+            Console.WriteLine("Ctak, Ctak, Ctak, error lagi!!");
+        }
+    }
+
+    // SubClass Swift <- SuperClass ACER <- SuperClass Laptop
+    class Swift : ACER
+    {
+        public Swift(Vga _vga, Processor _processor) : base("Swift", _vga, _processor)
+        {
+
+        }
+    }
+
+    // SubClass Predator <- SuperClass ACER <- SuperClass Laptop
+    class Predator : ACER
+    {
+        public Predator(Vga _vga, Processor _processor) : base("Predator", _vga, _processor)
+        {
+
+        }
+
+        // Method BermainGame() (Instruksi Nomor 2C)
+        public void BermainGame()
+        {
+            Console.WriteLine("Laptop " + merk + " " + tipe + " sedang memainkan game");
+        }
+    }
+
+    // SubClass IdeaPad <- SuperClass Lenovo <- SuperClass Laptop
+    class IdeaPad : Lenovo
+    {
+        public IdeaPad(Vga _vga, Processor _processor) : base("IdeaPad", _vga, _processor)
+        {
+
+        }
+    }
+
+    // SubClass Legion <- SuperClass Lenovo <- SuperClass Laptop
+    class Legion : Lenovo
+    {
+        public Legion(Vga _vga, Processor _processor) : base("Legion", _vga, _processor)
+        {
+
+        }
+    }
+
+    // BATAS BAWAH CLASS LAPTOP
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Instruksi Nomor 3A
+            Laptop laptop1, laptop2;
+
+            // Instruksi Nomor 3B
+            Predator predator;
+
+            // Instruksi Nomor 4
+            laptop1 = new Vivobook(new Nvidia(), new CoreI5());
+
+            // Instruksi Nomor 5
+            laptop2 = new IdeaPad(new AMD(), new Ryzen());
+
+            // Instruksi Nomor 6
+            predator = new Predator(new AMD(), new CoreI7());
+
+            // Soal Nomor 1
+            // laptop2.LaptopDinyalakan();
+            // laptop2.LaptopDimatikan();
+
+            // Soal Nomor 2
+            // laptop1.Ngoding();
+            // Tidak error jika laptop1 bertipe data Vivobook (tempat method Ngoding())
+
+            // Soal Nomor 3
+            // Console.WriteLine(laptop1.vga.merk); // Menampilkan merk vga
+            // Console.WriteLine(laptop1.processor.merk); // Menampilkan merk processor
+            // Console.WriteLine(laptop1.processor.tipe); // Menampilkan tipe processor
+
+            // Soal Nomor 4
+            // predator.BermainGame();
+
+            // Soal Nomor 5
+            // ACER acer = new Predator(new AMD(), new Athlon());
+            // acer.BermainGame();
+            // Tidak error jika acer bertipe data Predator (tempat method BermainGame())
+        }
+    }
+}
